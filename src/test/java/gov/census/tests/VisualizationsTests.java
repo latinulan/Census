@@ -183,15 +183,7 @@ public class VisualizationsTests extends TestBase {
 		assertTrue(vp.year2014.isDisplayed());
 	}
 
-	// Interactive Gallery TC16
-	@Test
-		public void interActiveGalleryisNotVisible() {
-			//1step
-			Utils.clickJSE(homePage.libraryLink);
-			//2 step
-			Utils.clickJSE(vp.audioLink);
-			assertTrue(vp.interActiveGallery.isEnabled());
-	}
+	
 			
 	// Verify content change according to a selection"TC12
 	@Test
@@ -229,6 +221,20 @@ public class VisualizationsTests extends TestBase {
 		assertTrue(vp.pinterest.isDisplayed());
 		assertTrue(vp.twitter.isDisplayed());
 	}
+	
+	// Interactive Gallery TC16
+		@Test
+			public void interActiveGalleryisNotVisible() {
+				//1step
+				Utils.clickJSE(homePage.libraryLink);
+				//2 step
+				Utils.clickJSE(vp.audioLink);
+				assertTrue(vp.interActiveGallery.isEnabled());
+		}
+	
+	
+	
+	
 	// DATE" TC18
 
 	@Test
