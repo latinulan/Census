@@ -169,6 +169,7 @@ public class VisualizationsTests extends TestBase {
 	}
 
 	// Verify dropdown functionality of Infographics and visualiation linkTC11
+	//AYSEL
 	@Test
 	public void dropDown() {
 		// 1step
