@@ -44,15 +44,15 @@ public class HomePageTest extends TestBase {
 		assertEquals(actual, expected, "Title should be : Census.gov");
 		Utils.clickJSE(homePage.libraryLink);
 	    
-		List<String> itemsString = new ArrayList<>();
+		List<String> itemsStr = new ArrayList<>();
 		//Utils.waitForVisibilityOfValue(HomePage.getLibraryOptions());
 	    List<WebElement>items = HomePage.getLibraryOptions();
 	    Utils.waitFor(3);
 		for(WebElement e : items) {
-			itemsString.add(e.getAttribute("value").trim());
+			itemsStr.add(e.getAttribute("value").trim());
 			}
 		
-		System.out.println(itemsString);
+		System.out.println(itemsStr);
 	}
 
 }
