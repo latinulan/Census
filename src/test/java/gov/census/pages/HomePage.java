@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -25,23 +26,31 @@ public class HomePage {
 	@FindBy(xpath = "//div[contains(text(),' Library ')]")
 	public WebElement libraryLink;
 
-	@FindBy(xpath = "//ul[@class='nav nav-pills']")
-	public WebElement libraryList;
-	// li[@class='categories subCategoryButton']
-	@FindBy(xpath = "(//ul[@class='nav nav-pills'])[3]//a")
-	public List<WebElement> libOptions;
-	@FindBy(xpath = "(//ul[@class='nav nav-pills'])[3]//a")
-	public WebElement option1;
-	@FindBy(xpath = "(//li[@class='categories subCategoryButton'])[29]//a")
+	@FindBy(xpath = "(//ul[@class='nav nav-pills'])[7]//a")
+	public List<WebElement> libraryListPart1;
+	@FindBy(xpath = "(//ul[@class='nav nav-pills'])[8]//a")
+	public List<WebElement> libraryListPart2;
+	
+    @FindBy(xpath = "(//li[@class='categories subCategoryButton'])[29]//a")
 	public WebElement linkInfoAndVisualizations;
-
-	public static List<WebElement> getLibraryOptions() {
-		List<String> list = new ArrayList<>();
-		List<WebElement> l1 = Driver.getDriver().findElements(By.xpath(("(//ul[@class='nav nav-pills'])[3]//a")));
-		List<WebElement> l2 = Driver.getDriver().findElements(By.xpath(("(//ul[@class='nav nav-pills'])[4]//a")));
-		l1.addAll(l2);
-
-		return l1;
+    
+	// get a text out of library options using javascript executor
+	public List<String> getLibraryOptions(List<WebElement> libraryList) {
+		List<String> list = new ArrayList();
+		JavascriptExecutor jse = (JavascriptExecutor)Driver.getDriver();
+		
+		for (WebElement el : libraryList) {
+			System.out.println(jse.executeScript("return arguments[0].text", el));
+		}
+		
+		return list;
 	}
 
+	
+	
+	
+	
+	
+	
+	
 }

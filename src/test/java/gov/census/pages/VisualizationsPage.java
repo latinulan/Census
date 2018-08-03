@@ -27,10 +27,10 @@ public class VisualizationsPage {
 	@FindBy(xpath = "//div[@class='valignMiddle']")
 	public List<WebElement> allPics;
 
-	@FindBy(linkText = "Infographics & Visualizations")
+	@FindBy(partialLinkText="Infographics & Visualization")
 	public WebElement infoAndVisiButton;
 
-	@FindBy(linkText = "Interactive Gallery")
+	@FindBy(partialLinkText = "Interactive Gallery")
 	public WebElement interactiveGallery;
 
 	@FindBy(xpath = "//div[@id='dropDownButton']")

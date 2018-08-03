@@ -22,7 +22,7 @@ import gov.census.utilities.Driver;
 import gov.census.utilities.Utils;
 
 public class VisualizationsTests extends TestBase {
- 
+
 	Actions action;
 	// Verify Link of Infographics & Visualizations page TEST"TC004
 
@@ -36,45 +36,7 @@ public class VisualizationsTests extends TestBase {
 		Utils.clickJSE(homePage.linkInfoAndVisualizations);
 	}
 
-	// Interactive Gallery"TC17
-	// Check if "Interactive Gallery" link is visible
-	@Test
-	public void interactiveGalleryIsVisible() {
-		Utils.clickJSE(homePage.libraryLink);
-		Utils.clickJSE(homePage.audio);
-		Utils.hover(vp.infoAndVisiButton);
-		Utils.waitFor(3);
-		assertTrue(vp.interactiveGallery.isDisplayed(), "Interactive Gallery shoulb be visible");
-
-	}
-
-	// Check if "Interactive Gallery" link is clickable TC15
-	@Test
-	public void interactiveGalleryClickable() {
-		gotoVisualizationPage();
-		Utils.waitFor(3);
-		Utils.clickJSE(vp.interactiveGallery);
-		String actual = Driver.getDriver().getTitle();
-		String expected = "Census Interactive Gallery";
-		assertEquals(actual, expected);
-
-	}
-
-	// Number configuration "TC19
-	// Verify that years are in decending order
-	@Test
-	public void verifyYears() {
-		gotoVisualizationPage();
-		Utils.hover(vp.yearsDropDownButton);
-		Utils.clickJSE(vp.yearsDropDownButton);
-		Utils.waitFor(3);
-		Select select = new Select(Driver.getDriver().findElement(By.xpath("//select[@id='listFilterSelect']")));
-		List<WebElement> yearsElement = select.getOptions();
-		List<Integer> years = Utils.getDropDownYears(vp.selectYear);
-		assertTrue(Utils.isDescending(years));
-		System.out.println(years);
-	}
-
+	// TC004
 	@Test
 	public void verifyLinkIV() {
 		gotoVisualizationPage();
@@ -84,7 +46,7 @@ public class VisualizationsTests extends TestBase {
 	}
 
 	// Verify Infographics & Visualizations page title TEST"TC005
-	@Ignore
+	
 	@Test
 	public void verifyTitleIV() {
 		gotoVisualizationPage();
@@ -94,8 +56,7 @@ public class VisualizationsTests extends TestBase {
 	}
 
 	// Verify number of pages Infographics & Visualizations TEST"TC006
-
-	@Test
+    @Test
 	public void verifyPagesIV() {
 		gotoVisualizationPage();
 		String actualStr = vp.countPagesBlock.getText();
@@ -105,13 +66,12 @@ public class VisualizationsTests extends TestBase {
 	}
 
 	// Verify Next Page Link Clickable TEST"TC007
-
 	@Test
 	public void nextPageClickable() {
 		gotoVisualizationPage();
 		assertTrue(vp.nextPage.isEnabled());
 		Utils.clickJSE(vp.nextPage);
-		Utils.waitFor(5);
+		Utils.waitFor(2);
 		String actualStr = vp.countPagesBlock.getText();
 		System.out.println(actualStr + " after clicking next");
 		int actual = Utils.getCurrentPage(actualStr);
@@ -120,23 +80,20 @@ public class VisualizationsTests extends TestBase {
 	}
 
 	// Verify Previous Page Link Clickable"TC008
-
-	@Test
+    @Test
 	public void previousPage() {
 		gotoVisualizationPage();
 		assertTrue(vp.nextPage.isEnabled());
 		Utils.clickJSE(vp.nextPage);
-		Utils.waitFor(5);
+		Utils.waitFor(3);
 		String actualStr = vp.countPagesBlock.getText();
-		System.out.println(actualStr + " after clicking next");
 		int actual1 = Utils.getCurrentPage(actualStr);
 		int expected1 = 2;
 		assertEquals(actual1, expected1);
 		assertTrue(vp.prevPage.isEnabled());
 		Utils.clickJSE(vp.prevPage);
-		Utils.waitFor(5);
+		Utils.waitFor(3);
 		String actualStr2 = vp.currentPage.getText();
-		System.out.println(actualStr2 + " after clicking previous");
 		int actual2 = Integer.parseInt(actualStr2);
 		int expected2 = 1;
 		assertEquals(actual2, expected2, "going to 1");
@@ -169,7 +126,7 @@ public class VisualizationsTests extends TestBase {
 	}
 
 	// Verify dropdown functionality of Infographics and visualiation linkTC11
-	//AYSEL
+	// AYSEL
 	@Test
 	public void dropDown() {
 		// 1step
@@ -183,8 +140,6 @@ public class VisualizationsTests extends TestBase {
 		assertTrue(vp.year2014.isDisplayed());
 	}
 
-	
-			
 	// Verify content change according to a selection"TC12
 	@Test
 	public void changeOfContent() {
@@ -221,22 +176,42 @@ public class VisualizationsTests extends TestBase {
 		assertTrue(vp.pinterest.isDisplayed());
 		assertTrue(vp.twitter.isDisplayed());
 	}
-	
-	// Interactive Gallery TC16
-		@Test
-			public void interActiveGalleryisNotVisible() {
-				//1step
-				Utils.clickJSE(homePage.libraryLink);
-				//2 step
-				Utils.clickJSE(vp.audioLink);
-				assertTrue(vp.interActiveGallery.isEnabled());
-		}
-	
-	
-	
-	
-	// DATE" TC18
 
+	// Check if "Interactive Gallery" link is clickable TC15
+	@Test
+	public void interactiveGalleryClickable() {
+		gotoVisualizationPage();
+		Utils.waitFor(3);
+		Utils.clickJSE(vp.interactiveGallery);
+		String actual = Driver.getDriver().getTitle();
+		String expected = "Census Interactive Gallery";
+		assertEquals(actual, expected);
+
+	}
+
+	// Interactive Gallery TC16
+	@Test
+	public void interActiveGalleryisNotVisible() {
+		// 1step
+		Utils.clickJSE(homePage.libraryLink);
+		// 2 step
+		Utils.clickJSE(vp.audioLink);
+		assertTrue(vp.interActiveGallery.isEnabled());
+	}
+
+	// Interactive Gallery"TC17
+	// Check if "Interactive Gallery" link is visible
+	@Test
+	public void interactiveGalleryIsVisible() {
+		Utils.clickJSE(homePage.libraryLink);
+		Utils.clickJSE(homePage.audio);
+		Utils.hover(vp.infoAndVisiButton);
+		Utils.waitFor(3);
+		assertTrue(vp.interactiveGallery.isDisplayed(), "Interactive Gallery shoulb be visible");
+
+	}
+
+	// DATE" TC18
 	@Test
 	public void verifyData() {
 		gotoVisualizationPage();
@@ -249,4 +224,18 @@ public class VisualizationsTests extends TestBase {
 
 	}
 
+	// Number configuration "TC19
+	// Verify that years are in decending order
+	@Test
+	public void verifyYears() {
+		gotoVisualizationPage();
+		Utils.hover(vp.yearsDropDownButton);
+		Utils.clickJSE(vp.yearsDropDownButton);
+		Utils.waitFor(3);
+		Select select = new Select(Driver.getDriver().findElement(By.xpath("//select[@id='listFilterSelect']")));
+		List<WebElement> yearsElement = select.getOptions();
+		List<Integer> years = Utils.getDropDownYears(vp.selectYear);
+		assertTrue(Utils.isDescending(years));
+		System.out.println(years);
+	}
 }
